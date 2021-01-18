@@ -247,7 +247,8 @@ $(function(){
 	// iterate through all data files to retrieve
 	DATA_FILES.forEach(function(file){
 		// asynchronous call to retrieve data
-		$.getJSON(file)
+		absFile = require("./../" + file);
+		$.getJSON(absFile)
 			.done(function(d){
 				// add response data to list
 				d.forEach(function(entry){
@@ -255,7 +256,7 @@ $(function(){
 				});
 			})
 			.fail(function(jqxhr, textStatus, error){
-				console.log("Couldn't load " + file);
+				console.log("Couldn't load " + absFile);
 			})
 			.always(function(){
 				requestsLeft -= 1;
