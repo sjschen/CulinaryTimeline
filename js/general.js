@@ -256,6 +256,8 @@ $(function(){
 			})
 			.fail(function(jqxhr, textStatus, error){
 				console.log("Couldn't load " + file);
+				console.log("Reason: " + textStatus);
+				console.log("Error: " + error);
 			})
 			.always(function(){
 				requestsLeft -= 1;
