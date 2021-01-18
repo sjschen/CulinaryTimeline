@@ -1,6 +1,6 @@
 [
 	{
-		"name": "Project 3",
+		"name": "Sample i 3",
 		"description": "Sample description 3",
 		"date": "4/02/16",
 		"links": [
@@ -15,7 +15,7 @@
 		"links": [
 			["Github", "www.github.com"],
 			["Multiple 1", "www.github.com"],
-			["Multiple 2", "www.github.com"]
+			["Multiple 2", "www.github.com"]t
 		] 
 	},
 	{
