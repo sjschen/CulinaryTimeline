@@ -6,7 +6,7 @@ var DEFAULT_COLOR = 0; // only works if RANDOM_COLORS is false
 var RANDOM_SIDES = false; // randomize side timeline events are on
 var CHRONOLOGICAL = true; // false for oldest first; true for newest first
 var DIVIDERS = true; // false for no year dividers; true for year dividers
-var DATA_FILES = ["projects.json"]; 
+var DATA_FILES = ["./../projects.json"]; 
 
 // https://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device-in-jquery
 var isMobile = false, windowDim; //initiate as false
@@ -247,8 +247,7 @@ $(function(){
 	// iterate through all data files to retrieve
 	DATA_FILES.forEach(function(file){
 		// asynchronous call to retrieve data
-		absFile = require("./../" + file);
-		$.getJSON(absFile)
+		$.getJSON(file)
 			.done(function(d){
 				// add response data to list
 				d.forEach(function(entry){
@@ -256,7 +255,7 @@ $(function(){
 				});
 			})
 			.fail(function(jqxhr, textStatus, error){
-				console.log("Couldn't load " + absFile);
+				console.log("Couldn't load " + file);
 			})
 			.always(function(){
 				requestsLeft -= 1;
