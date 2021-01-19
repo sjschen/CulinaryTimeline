@@ -125,11 +125,11 @@ function loadedData(data)
 
 		// generate html code for links section
 		links = "<h3>"
-		e["links"].forEach(function(link){
+		e["media"]["url"].forEach(function(link){
 			links += "<span><a href=\"https://" + link[1] + "\">" + 
 					 link[0] + "</a></span>";
 		});
-		if (e["links"].length == 0)
+		if (e["media"]["url"].length == 0)
 		{
 			links += "None";
 		}
@@ -161,7 +161,7 @@ function loadedData(data)
 			eventColor = colors[yearCounter % colors.length];
 		}
 
-		if (e["description"] == "" && e["links"].length == 0)
+		if (e["description"] == "" && e["media"]["url"].length == 0)
 		{   // level info
 			elem = "<div class=\"level\">" + 
 					"<div class=\"infoDot\" style=\"background : " +

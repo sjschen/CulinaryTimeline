@@ -13,10 +13,11 @@
             "millisecond": 	"",
             "format": 		""
 		},
-		"links": [
+		"media": { "url": [
 			["Github", "www.github.com"],
 			["Multiple", "www.github.com"]
-		] 
+		]
+		}
 	},
 	{
 		"name": "hahahaha018-01-01",
@@ -32,10 +33,11 @@
             "millisecond": 	"",
             "format": 		""
 		},
-		"links": [
+		"media": { "url": [
 			["Github", "www.github.com"],
 			["Multiple", "www.github.com"]
-		] 
+		]
+		}
 	},
 	{
 		"name": "Project 4: 2016-04-03",
@@ -51,11 +53,12 @@
             "millisecond": 	"",
             "format": 		""
 		},
-		"links": [
+		"media": { "url": [
 			["Github", "www.github.com"],
 			["Multiple 1", "www.github.com"],
 			["Multiple 2", "www.github.com"]
-		] 
+		]
+		}
 	},
 	{
 		"name": "Project 1",
@@ -71,9 +74,10 @@
             "millisecond": 	"",
             "format": 		""
 		},
-		"links": [
+		"media": { "url": [
 			["Github", "www.github.com"]
 		]
+		}
 	},
 	{
 		"name": "Sample i 3: 2018-01-01",
@@ -89,10 +93,11 @@
             "millisecond": 	"",
             "format": 		""
 		},
-		"links": [
+		"media": { "url": [
 			["Github", "www.github.com"],
 			["Multiple", "www.github.com"]
-		] 
+		]
+		}
 	},
 	{
 		"name": "hahahaha018-01-01",
@@ -108,10 +113,11 @@
             "millisecond": 	"",
             "format": 		""
 		},
-		"links": [
+		"media": { "url": [
 			["Github", "www.github.com"],
 			["Multiple", "www.github.com"]
-		] 
+		]
+		}
 	},
 	{
 		"name": "Project 4: 2016-04-03",
@@ -127,11 +133,12 @@
             "millisecond": 	"",
             "format": 		""
 		},
-		"links": [
+		"media": { "url": [
 			["Github", "www.github.com"],
 			["Multiple 1", "www.github.com"],
 			["Multiple 2", "www.github.com"]
-		] 
+		]
+		}
 	},
 	{
 		"name": "Project 1",
@@ -147,9 +154,10 @@
             "millisecond": 	"",
             "format": 		""
 		},
-		"links": [
+		"media": { "url": [
 			["Github", "www.github.com"]
 		]
+		}
 	},
 	{
 		"name": "Project 6: 2018-12-15",
@@ -165,9 +173,10 @@
             "millisecond": 	"",
             "format": 		""
 		},
-		"links": [
+		"media": { "url": [
 			["Github", "www.github.com"]
-		] 
+		]
+		}
 	},
 	{
 		"name": "Project 5: 2018",
@@ -183,7 +192,7 @@
             "millisecond": 	"",
             "format": 		""
 		},
-		"links": [] 
+		"media": { "url": [] } 
 	},
 	{
 		"name": "Sample2 :2012-03-25",
@@ -199,8 +208,9 @@
             "millisecond": 	"",
             "format": 		""
 		},
-		"links": [
+		"media": { "url": [
 			["Github", "www.github.com"]
-		] 
+		]
+		}
 	}
 ]
