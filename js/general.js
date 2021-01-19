@@ -103,32 +103,11 @@ function loadedData(data)
 
 	// loop on each event to be added
 	data.forEach(function(e){
-		if (RANDOM_SIDES)
-		{
-			// random int to decide which side to put event on
-			var i = randint(2);
+		var i = counter;	
+		counter += 1;
 
-			// ensure event isn't put on same side 3 times in a row
-			if (counter > 0 && i > 0) counter += 1;
-			else if (counter < 0 && i == 0) counter -= 1;
-			else counter = (i * 2 - 1);
-			if (Math.abs(counter) >= 3)
-			{
-				// flip i
-				i = (i == 0 ? 1 : 0);
-				counter = (i * 2 - 1);
-			}
-		}
-		else
-		{
-			i = counter;	
-			counter += 1;
-		}
-
-		var dataClass = (i % 2 == 0 ? 
-						 "leftInfo" : "rightInfo")
-		var dateClass = (i % 2 == 0 ? 
-						 "leftDate" : "rightDate")
+		var infoClass = (i % 2 == 0 ? "leftInfo" : "rightInfo")
+		var dateClass = (i % 2 == 0 ? "leftDate" : "rightDate")
 
 		// generate html code for links section
 		links = "<h3>"
@@ -155,7 +134,7 @@ function loadedData(data)
 				dividerColor = colors[yearCounter % colors.length];
 			}
 
-			var dividerElem = "<div class=\"divider level\" style=\"" + 
+			var dividerElem = "<div class=\"divider\" style=\"" + 
 				"background: " + dividerColor + "\" id=\"" + 
 				lastYear + "\">" +
 				lastYear + "</div>";
@@ -169,8 +148,8 @@ function loadedData(data)
 		}
 
 		if (e["description"] == "" && e["links"].length == 0)
-		{
-			elem = "<div class=\"level event smallEvent\">" + 
+		{   // level info
+			elem = "<div class=\"level\">" + 
 					"<div class=\"infoDot\" style=\"background : " +
 					eventColor + "\">" + 
 					"<div class=\"infoDate " +
@@ -178,14 +157,15 @@ function loadedData(data)
 					eventColor + "\">" +
 					e["sDate"] + "</div>" + 
 					"</div>" + 
-					"<div class=\"info " + dataClass + "\">" + 
+					"<div class=\"info " + infoClass + "\">" + 
 					"<h1>" + e["name"] + "</h1>" +
 					"</div>" +
 					"</div>";
 		}
 		else
 		{
-			elem = "<div class=\"level event\">" + 
+		    //level info h1 p
+			elem = "<div class=\"level\">" + 
 					"<div class=\"infoDot\" style=\"background : " +
 					eventColor + "\">" + 
 					"<div class=\"infoDate " +
@@ -193,7 +173,7 @@ function loadedData(data)
 					eventColor + "\">" +
 					e["sDate"] + "</div>" + 
 					"</div>" + 
-					"<div class=\"info " + dataClass + "\">" + 
+					"<div class=\"info " + infoClass + "\">" + 
 					"<h1>" + e["name"] + "</h1>" +
 					"<p>" + e["description"] + "</p>" + 
 					links +
@@ -221,7 +201,7 @@ function loadedData(data)
 		// balance container alignment to center content
 		// calculate amount of unused space next to date labels
 		$("#body").css("marginLeft", 
-			(maxDateWidth - container.offset().left) / -2.0);
+			(maxDateWidth - contcontainerainer.offset().left) / -2.0);
 	}
 
 	finishedLoading();
