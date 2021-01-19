@@ -5,7 +5,7 @@ var RANDOM_COLORS = true; // randomize color of timeline labels
 var DEFAULT_COLOR = 0; // only works if RANDOM_COLORS is false
 var RANDOM_SIDES = false; // randomize side timeline events are on
 var CHRONOLOGICAL = true; // false for oldest first; true for newest first
-var DIVIDERS = true; // false for no year dividers; true for year dividers
+var DIVIDERS = false; // false for no year dividers; true for year dividers
 var DATA_FILES = ["./projects.json"]; 
 
 // https://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device-in-jquery
@@ -50,11 +50,17 @@ function formatDate(date)
 		"November", "December"
 	];
 
-	var day = date.getDate();
-	var monthIndex = date.getMonth();
-	var year = date.getFullYear();
-
-	return monthNames[monthIndex] +  ' ' + day + ', ' + year;
+	var outString = date.getFullYear();
+	if (date.getMonth()){
+	    outString += ' ' + monthNames[date.getMonth()];
+	    
+	    //Day only if there is a month
+	    if (date.getDate()){
+	        outString += ' ' + date.getDate();
+	    }
+	}
+	//monthNames[monthIndex] +  ' ' + day + ', ' + year;
+	return outString;
 }
 
 // function to convert date strings to date objects
@@ -62,17 +68,25 @@ function convertDates(data)
 {
 	for (i = 0; i < data.length; i++)
 	{
-		var original = data[i]["date"]
-		data[i]["date"] = new Date(original);
-		if ("onlyYear" in data[i] && data[i]["onlyYear"])
+		var original = data[i]["start_date"];
+		var dateTime = new Date();
+		
+		if ("year" in original && original["year"])
 		{
-			data[i]["sDate"] = original;
-			data[i]["date"].setDate(data[i]["date"].getDate() + 1);
+    		dateTime.setFullYear(original["year"]);
 		}
-		else
+		
+		if ("month" in original && original["month"])
 		{
-			data[i]["sDate"] = formatDate(data[i]["date"]);
+    		dateTime.setMonth(original["month"]);
 		}
+					
+	    if ("day" in original && original["day"])
+	    {
+    		dateTime.setDate(original["day"]);
+	    }
+	    
+		data[i]["sDate"] = formatDate(dateTime);
 	}	
 	return data;
 }
@@ -123,10 +137,10 @@ function loadedData(data)
 
 		dividerElem = false;
 		// add generated html code to document
-		if (e["date"].getFullYear() != lastYear)
+		if (e["start_date"]["year"] != lastYear)
 		{
 			yearCounter += 1;
-			lastYear = e["date"].getFullYear();	
+			lastYear = e["start_date"]["year"];
 			var dividerColor = randColor();
 
 			if (COLOR_BY_YEAR)
