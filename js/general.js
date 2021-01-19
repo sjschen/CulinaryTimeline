@@ -86,6 +86,7 @@ function convertDates(data)
     		dateTime.setDate(original["day"]);
 	    }
 	    
+		data[i]["date"] = dateTime;
 		data[i]["sDate"] = formatDate(dateTime);
 	}	
 	return data;
@@ -123,18 +124,6 @@ function loadedData(data)
 		var infoClass = (i % 2 == 0 ? "leftInfo" : "rightInfo")
 		var dateClass = (i % 2 == 0 ? "leftDate" : "rightDate")
 
-		// generate html code for links section
-		links = "<h3>"
-		e["media"]["url"].forEach(function(link){
-			links += "<span><a href=\"https://" + link[1] + "\">" + 
-					 link[0] + "</a></span>";
-		});
-		if (e["media"]["url"].length == 0)
-		{
-			links += "None";
-		}
-		links += "</h3>";
-
 		dividerElem = false;
 		// add generated html code to document
 		if (e["start_date"]["year"] != lastYear)
@@ -161,39 +150,40 @@ function loadedData(data)
 			eventColor = colors[yearCounter % colors.length];
 		}
 
-		if (e["text"]["text"] == "" && e["media"]["url"].length == 0)
-		{   // level info
-			elem = "<div class=\"level\">" + 
-					"<div class=\"infoDot\" style=\"background : " +
-					eventColor + "\">" + 
-					"<div class=\"infoDate " +
-					dateClass + "\" style=\"background: " +
-					eventColor + "\">" +
-					e["sDate"] + "</div>" + 
-					"</div>" + 
-					"<div class=\"info " + infoClass + "\">" + 
-					"<h1>" + e["text"]["headline"] + "</h1>" +
-					"</div>" +
-					"</div>";
-		}
-		else
+
+		// generate html code for links section
+		links = "<h3>"
+		e["media"]["url"].forEach(function(link){
+			links += "<span><a href=\"https://" + link[1] + "\">" + 
+					 link[0] + "</a></span>";
+		});
+		if (e["media"]["url"].length == 0)
 		{
-		    //level info h1 p
-			elem = "<div class=\"level\">" + 
-					"<div class=\"infoDot\" style=\"background : " +
-					eventColor + "\">" + 
-					"<div class=\"infoDate " +
-					dateClass + "\" style=\"background: " +
-					eventColor + "\">" +
-					e["sDate"] + "</div>" + 
-					"</div>" + 
-					"<div class=\"info " + infoClass + "\">" + 
-					"<h1>" + e["text"]["headline"] + "</h1>" +
-					"<p>" + e["text"]["text"] + "</p>" + 
-					links +
-					"</div>" +
-					"</div>";
+			links += "None";
 		}
+		links += "</h3>";
+		
+        // time block generate view
+		var elem = "<div class=\"level\">" + 
+				"<div class=\"infoDot\" style=\"background : " +
+				eventColor + "\">" + 
+				"<div class=\"infoDate " +
+				dateClass + "\" style=\"background: " +
+				eventColor + "\">" +
+				e["sDate"] + "</div>" + 
+				"</div>" + 
+				"<div class=\"info " + infoClass + "\">" + 
+				"<h1>" + e["text"]["headline"] + "</h1>";
+
+        if (e["text"]["text"] !== "")
+        {
+			elem += "<p>" + e["text"]["text"] + "</p>";
+		}
+		if (e["media"]["url"].length !== 0)
+		{
+			elem += links
+		}	
+		elem += "</div>" + "</div>";
 
 		if (DIVIDERS && dividerElem !== false)
 		{
