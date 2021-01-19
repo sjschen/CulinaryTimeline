@@ -1,17 +1,17 @@
 [
 	{
-		"name": "Sample i 3",
+		"name": "Sample i 3: 2018-01-01",
 		"description": "Sample description 3",
-		"date": "4/02/16",
+		"date": "2018-01-01",
 		"links": [
 			["Github", "www.github.com"],
 			["Multiple", "www.github.com"]
 		] 
 	},
 	{
-		"name": "Project 4",
+		"name": "Project 4: 2016-04-03",
 		"description": "Sample description 4",
-		"date": "4/03/16",
+		"date": "4/03/2016",
 		"links": [
 			["Github", "www.github.com"],
 			["Multiple 1", "www.github.com"],
@@ -27,24 +27,24 @@
 		]
 	},
 	{
-		"name": "Project 6",
+		"name": "Project 6: 2018-12-15",
 		"description": "Similar to HackBCA III project but with added features such as friend-based event suggestions, ability to sign up for events, and an improved user interface. Hosted on an Amazon AWS EC2 instance and employed git version control for group collaboration",
-		"date": "12/25/18",
+		"date": "12/25/2018",
 		"links": [
 			["Github", "www.github.com"]
 		] 
 	},
 	{
-		"name": "Project 5",
+		"name": "Project 5: 2018",
 		"description": "",
 		"date": "2018",
 		"onlyYear": "true",
 		"links": [] 
 	},
 	{
-		"name": "Project 2",
+		"name": "Sample2 :2012-03-25",
 		"description": "Sample description 2",
-		"date": "3/25/12",
+		"date": "3/25/2012",
 		"links": [
 			["Github", "www.github.com"]
 		] 
