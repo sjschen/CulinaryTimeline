@@ -1,7 +1,7 @@
 [
 	{
-		"name": "Sample i 3: 2018-01-01",
-		"description": "Sample description 3",
+		"text": { "headline": "Sample i 3: 2018-01-01",
+		"text": "Sample description 3"},
 		"start_date":
 		{
 	        "year":			"2018",
@@ -20,8 +20,8 @@
 		}
 	},
 	{
-		"name": "hahahaha018-01-01",
-		"description": "",
+		"text": { "headline": "hahahaha018-01-01",
+		"text": ""},
 		"start_date":
 		{
 	        "year":			"2019",
@@ -40,8 +40,8 @@
 		}
 	},
 	{
-		"name": "Project 4: 2016-04-03",
-		"description": "Sample description 4",
+		"text": { "headline": "Project 4: 2016-04-03",
+		"text": "Sample description 4"},
 		"start_date":
 		{
 	        "year":			"3000",
@@ -61,8 +61,8 @@
 		}
 	},
 	{
-		"name": "Project 1",
-		"description": "Sample description 1",
+		"text": { "headline": "Project 1",
+		"text": "Sample description 1"},
 		"start_date":
 		{
 	        "year":			"2014",
@@ -80,8 +80,8 @@
 		}
 	},
 	{
-		"name": "Sample i 3: 2018-01-01",
-		"description": "Sample description 3",
+		"text": { "headline": "Sample i 3: 2018-01-01",
+		"text": "Sample description 3"},
 		"start_date":
 		{
 	        "year":			"2018",
@@ -100,8 +100,8 @@
 		}
 	},
 	{
-		"name": "hahahaha018-01-01",
-		"description": "",
+		"text": { "headline": "hahahaha018-01-01",
+		"text": ""},
 		"start_date":
 		{
 	        "year":			"2018",
@@ -120,8 +120,8 @@
 		}
 	},
 	{
-		"name": "Project 4: 2016-04-03",
-		"description": "Sample description 4",
+		"text": { "headline": "Project 4: 2016-04-03",
+		"text": "Sample description 4"},
 		"start_date":
 		{
 	        "year":			"2016",
@@ -141,8 +141,8 @@
 		}
 	},
 	{
-		"name": "Project 1",
-		"description": "Sample description 1",
+		"text": { "headline": "Project 1",
+		"text": "Sample description 1"},
 		"start_date":
 		{
 	        "year":			"2011",
@@ -160,8 +160,8 @@
 		}
 	},
 	{
-		"name": "Project 6: 2018-12-15",
-		"description": "Similar to HackBCA III project but with added features such as friend-based event suggestions, ability to sign up for events, and an improved user interface. Hosted on an Amazon AWS EC2 instance and employed git version control for group collaboration",
+		"text": { "headline": "Project 6: 2018-12-15",
+		"text": "Similar to HackBCA III project but with added features such as friend-based event suggestions, ability to sign up for events, and an improved user interface. Hosted on an Amazon AWS EC2 instance and employed git version control for group collaboration"},
 		"start_date":
 		{
 	        "year":			"2018",
@@ -179,8 +179,8 @@
 		}
 	},
 	{
-		"name": "Project 5: 2018",
-		"description": "",
+		"text": { "headline": "Project 5: 2018",
+		"text": ""},
 		"start_date":
 		{
 	        "year":			"2018",
@@ -195,8 +195,8 @@
 		"media": { "url": [] } 
 	},
 	{
-		"name": "Sample2 :2012-03-25",
-		"description": "Sample description 2",
+		"text": { "headline": "Sample2 :2012-03-25",
+		"text": "Sample description 2"},
 		"start_date":
 		{
 	        "year":			"2012",

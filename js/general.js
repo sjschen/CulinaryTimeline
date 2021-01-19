@@ -161,7 +161,7 @@ function loadedData(data)
 			eventColor = colors[yearCounter % colors.length];
 		}
 
-		if (e["description"] == "" && e["media"]["url"].length == 0)
+		if (e["text"]["text"] == "" && e["media"]["url"].length == 0)
 		{   // level info
 			elem = "<div class=\"level\">" + 
 					"<div class=\"infoDot\" style=\"background : " +
@@ -172,7 +172,7 @@ function loadedData(data)
 					e["sDate"] + "</div>" + 
 					"</div>" + 
 					"<div class=\"info " + infoClass + "\">" + 
-					"<h1>" + e["name"] + "</h1>" +
+					"<h1>" + e["text"]["headline"] + "</h1>" +
 					"</div>" +
 					"</div>";
 		}
@@ -188,8 +188,8 @@ function loadedData(data)
 					e["sDate"] + "</div>" + 
 					"</div>" + 
 					"<div class=\"info " + infoClass + "\">" + 
-					"<h1>" + e["name"] + "</h1>" +
-					"<p>" + e["description"] + "</p>" + 
+					"<h1>" + e["text"]["headline"] + "</h1>" +
+					"<p>" + e["text"]["text"] + "</p>" + 
 					links +
 					"</div>" +
 					"</div>";
