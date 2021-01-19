@@ -92,6 +92,47 @@ function convertDates(data)
 	return data;
 }
 
+function elementToHtml(data, eventColor, infoClass, dateClass)
+{
+		// generate html code for links section
+		links = "<h3>"
+		data["media"]["url"].forEach(function(link){
+			links += "<span><a href=\"https://" + link[1] + "\">" + 
+					 link[0] + "</a></span>";
+		});
+		if (data["media"]["url"].length == 0)
+		{
+			links += "None";
+		}
+		links += "</h3>";
+		
+        // time block generate view
+		var elem = "<div class=\"level\">" + 
+				"<div class=\"infoDot\" style=\"background : " +
+				eventColor + "\">" + 
+				"<div class=\"infoDate " +
+				dateClass + "\" style=\"background: " +
+				eventColor + "\">" +
+				data["sDate"] + "</div>" + 
+				"</div>" + 
+				"<div class=\"info " + infoClass + "\">" + 
+				"<h1>" + data["text"]["headline"] + "</h1>";
+
+        if (data["text"]["text"] !== "")
+        {
+			elem += "<p>" + data["text"]["text"] + "</p>";
+		}
+		
+		if (data["media"]["url"].length !== 0)
+		{
+			elem += links
+		}	
+		
+		elem += "</div>" + "</div>";
+		
+	return elem;
+}
+
 function loadedData(data)
 {
 	var container = $("#container");
@@ -150,40 +191,7 @@ function loadedData(data)
 			eventColor = colors[yearCounter % colors.length];
 		}
 
-
-		// generate html code for links section
-		links = "<h3>"
-		e["media"]["url"].forEach(function(link){
-			links += "<span><a href=\"https://" + link[1] + "\">" + 
-					 link[0] + "</a></span>";
-		});
-		if (e["media"]["url"].length == 0)
-		{
-			links += "None";
-		}
-		links += "</h3>";
-		
-        // time block generate view
-		var elem = "<div class=\"level\">" + 
-				"<div class=\"infoDot\" style=\"background : " +
-				eventColor + "\">" + 
-				"<div class=\"infoDate " +
-				dateClass + "\" style=\"background: " +
-				eventColor + "\">" +
-				e["sDate"] + "</div>" + 
-				"</div>" + 
-				"<div class=\"info " + infoClass + "\">" + 
-				"<h1>" + e["text"]["headline"] + "</h1>";
-
-        if (e["text"]["text"] !== "")
-        {
-			elem += "<p>" + e["text"]["text"] + "</p>";
-		}
-		if (e["media"]["url"].length !== 0)
-		{
-			elem += links
-		}	
-		elem += "</div>" + "</div>";
+        var elem = elementToHtml(e, eventColor, infoClass, dateClass);
 
 		if (DIVIDERS && dividerElem !== false)
 		{
@@ -198,6 +206,7 @@ function loadedData(data)
 								elem.find(".infoDate").offset().left);
 
 	});
+	
 
 	// do some visual adjustments for mobile
 	if (isMobile)
