@@ -91,7 +91,7 @@ function elementToHtml(data, eventColor, infoClass, dateClass) {
   // generate html code for links section
   links = "<h3>"
   data["media"]["url"].forEach(function(link) {
-    links += "<span><a href=\"https://" + link[1] + "\">" +
+    links += "<span><a href=\"" + link[1] + "\">" +
       link[0] + "</a></span>";
   });
   if (data["media"]["url"].length == 0) {
@@ -148,7 +148,8 @@ function loadedData(data, titleText) {
 
   var titleElem = "<div class=\"title\" style=\"" +
     "background: " + colors[0] + "\">" +
-    titleText + "</div>";
+     "<a href=\"" + "http://foodtimeline.org" + "\">" + //This is a hack
+      titleText + "</a>" + "</div>";
   container.append(titleElem);
 
   // loop on each event to be added
@@ -217,7 +218,7 @@ $(function() {
     y: $(window).height()
   };
 
-  isMobile = false;// isMobile || windowDim.x <= 950;
+  isMobile = isMobile || windowDim.x <= 950;
 
   if (isMobile) {
     //$("body").addClass("mobile");

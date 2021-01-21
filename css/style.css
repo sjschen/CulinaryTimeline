@@ -31,7 +31,7 @@ body {
 }
 
 #container {
-  width: 900px;
+  width: 60%;
   margin: auto;
   position: relative;
   left: 0px;
@@ -56,7 +56,7 @@ body {
 
 .title {
   position: relative;
-  width: 350px;
+  width: 50%;
   height: 90px;
   line-height: 90px;
   border-radius: 15px;
@@ -66,6 +66,13 @@ body {
   margin: auto;
   text-align: center;
   font-weight: normal;
+  font-size: 20px;
+}
+
+.title a {
+  color: black !important;
+  text-decoration: none !important;
+  font-weight: 500;
 }
 
 .divider {
@@ -99,7 +106,7 @@ body {
 .info {
   background: #f4f4f4;
   padding: 10px;
-  width: 390px;
+  width: 45%;
 }
 
 .info.leftInfo {
@@ -120,14 +127,14 @@ body {
 }
 
 .info.leftInfo:after {
-  left: 410px;
+  left: 46.5%;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
   border-left: 15px solid #f4f4f4;
 }
 
 .info.rightInfo:after {
-  right: 410px;
+  right: 46.5%;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
   border-right:15px solid #f4f4f4;
@@ -139,7 +146,7 @@ body {
   line-height: 30px;
   border-radius: 15px;
   white-space: nowrap;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
 }
 
@@ -186,7 +193,7 @@ body {
 }
 
 .info h1 {
-  font-size: 20px;
+  font-size: 16px;
   padding: 0px;
   margin: 0px;
   margin-bottom: 5px;
@@ -210,18 +217,18 @@ body {
 .info h3 {
   margin: 0px;
   padding: 0px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 300;
   position: relative;
   height: 18px;
-  line-height: 18px;
+  line-height: 15px;
   overflow: hidden;
   text-overflow: hidden;
   white-space: nowrap;
 }
 
 .info h3:before {
-  content: "Links:";
+  content: "";
   font-weight: 300;
   margin-right: 10px;
 }
