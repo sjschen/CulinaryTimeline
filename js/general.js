@@ -91,7 +91,8 @@ function elementToHtml(data, eventColor, infoClass, dateClass) {
   // generate html code for links section
   links = "<h3>"
   data["media"]["url"].forEach(function(link) {
-    links += "<span><a href=\"" + link[1] + "\">" +
+    links += "<span><a href=\"" + link[1] +
+    "\"  target=\"_blank\" rel=\"noopener noreferrer\" >" +
       link[0] + "</a></span>";
   });
   if (data["media"]["url"].length == 0) {
@@ -148,7 +149,8 @@ function loadedData(data, titleText) {
 
   var titleElem = "<div class=\"title\" style=\"" +
     "background: " + colors[0] + "\">" +
-     "<a href=\"" + "http://foodtimeline.org" + "\">" + //This is a hack
+     "<a href=\"" + "http://foodtimeline.org" + //This is a hack
+     "\" target=\"_blank\" rel=\"noopener noreferrer\" >" +
       titleText + "</a>" + "</div>";
   container.append(titleElem);
 
@@ -218,11 +220,11 @@ $(function() {
     y: $(window).height()
   };
 
-  isMobile = isMobile || windowDim.x <= 950;
+  isMobile = true; //isMobile || windowDim.x <= 950;
 
   if (isMobile) {
-    //$("body").addClass("mobile");
-      console.log("skipping mobile");
+    $("body").addClass("mobile");
+    //  console.log("skipping mobile");
   }
 
   // make list of all data retrieved
