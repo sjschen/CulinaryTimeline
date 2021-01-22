@@ -1,45 +1,12 @@
 // settings
-var COLOR_BY_YEAR = true;
-/* make all labels for the same year the same
-              color; overwrites RANDOM_COLORS */
-var RANDOM_COLORS = true; // randomize color of timeline labels
-var DEFAULT_COLOR = 0; // only works if RANDOM_COLORS is false
-var RANDOM_SIDES = false; // randomize side timeline events are on
-var CHRONOLOGICAL = true; // false for oldest first; true for newest first
-var DIVIDERS = false; // false for no year dividers; true for year dividers
-var DATA_FILES = ["./projects.json"];
+var DIVIDERS = true; // false for no year dividers; true for year dividers
+var DATA_FILE = "./projects.json";
 
 // https://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device-in-jquery
-var isMobile = false, windowDim; //initiate as false
-// device detection
-if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) ||
-  /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0, 4))) {
-  isMobile = true;
-}
+var isMobile = false;
 
-// number of requests left
-var requestsLeft = 0;
-
-function finishedLoading() {
-  document.body.removeChild(document.getElementById("loadingMessage"));
-}
 
 var colors = ["#ca5454", "#e8a040", "#fcdd75", "#7e92b9", "#ebc59c"];
-
-// get a random integer in the range [0, max)
-function randint(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
-
-// get a random color
-function randColor() {
-  if (RANDOM_COLORS){
-     return colors[randint(colors.length)];
-   }
-  else{
-    return colors[DEFAULT_COLOR];
-  }
-}
 
 // function to format date to Month Date, Year
 function formatDate(date) {
@@ -49,11 +16,9 @@ function formatDate(date) {
     "August", "September", "October",
     "November", "December"
   ];
-
   var outString = date.getFullYear();
   if (date.getMonth()) {
     outString += ' ' + monthNames[date.getMonth()];
-
     //Day only if there is a month
     if (date.getDate()) {
       outString += ' ' + date.getDate();
@@ -71,14 +36,12 @@ function convertDates(data) {
 
     if ("year" in original && original["year"]) {
       dateTime.setFullYear(original["year"]);
-    }
-
-    if ("month" in original && original["month"]) {
-      dateTime.setMonth(original["month"]);
-    }
-
-    if ("day" in original && original["day"]) {
-      dateTime.setDate(original["day"]);
+      if ("month" in original && original["month"]) {
+        dateTime.setMonth(original["month"]);
+        if ("day" in original && original["day"]) {
+          dateTime.setDate(original["day"]);
+        }
+      }
     }
 
     data[i]["date"] = dateTime;
@@ -87,12 +50,12 @@ function convertDates(data) {
   return data;
 }
 
-function elementToHtml(data, eventColor, infoClass, dateClass) {
+function elementToHtml(data, myColor, infoClass, dateClass) {
   // generate html code for links section
   links = "<h3>"
   data["media"]["url"].forEach(function(link) {
     links += "<span><a href=\"" + link[1] +
-    "\"  target=\"_blank\" rel=\"noopener noreferrer\" >" +
+      "\"  target=\"_blank\" rel=\"noopener noreferrer\" >" +
       link[0] + "</a></span>";
   });
   if (data["media"]["url"].length == 0) {
@@ -103,10 +66,10 @@ function elementToHtml(data, eventColor, infoClass, dateClass) {
   // time block generate view
   var elem = "<div class=\"level\">" +
     "<div class=\"infoDot\" style=\"background : " +
-    eventColor + "\">" +
+    myColor + "\">" +
     "<div class=\"infoDate " +
     dateClass + "\" style=\"background: " +
-    eventColor + "\">" +
+    myColor + "\">" +
     data["sDate"] + "</div>" +
     "</div>" +
     "<div class=\"info " + infoClass + "\">" +
@@ -130,69 +93,52 @@ function loadedData(data, titleText) {
 
   // counter to make sure no more than 2 adjacent events go to same side
   var counter = 0;
-
-  var yearCounter = -1;
+  var yearCounter = 0;
 
   // change date strings to date objects
   data = convertDates(data);
 
   // sort events by date
   data.sort(function(a, b) {
-    return (CHRONOLOGICAL ? a["date"] < b["date"] :
-      a["date"] > b["date"]);
+    return a["date"] < b["date"];
   });
 
   container.append("<div id=\"timeline\"></div>");
 
   var lastYear = null;
+  var dividerColor = colors[yearCounter % colors.length];
   var maxDateWidth = 99999;
 
   var titleElem = "<div class=\"title\" style=\"" +
-    "background: " + colors[0] + "\">" +
-     "<a href=\"" + "http://foodtimeline.org" + //This is a hack
-     "\" target=\"_blank\" rel=\"noopener noreferrer\" >" +
-      titleText + "</a>" + "</div>";
+    "background: " + dividerColor + "\">" +
+    "<a href=\"" + "http://foodtimeline.org" + //This is a hack
+    "\" target=\"_blank\" rel=\"noopener noreferrer\" >" +
+    titleText + "</a>" + "</div>";
   container.append(titleElem);
 
   // loop on each event to be added
   data.forEach(function(e) {
-    var i = counter;
+    var infoClass = (counter % 2 == 0 ? "leftInfo" : "rightInfo")
+    var dateClass = (counter % 2 == 0 ? "leftDate" : "rightDate")
     counter += 1;
 
-    var infoClass = (i % 2 == 0 ? "leftInfo" : "rightInfo")
-    var dateClass = (i % 2 == 0 ? "leftDate" : "rightDate")
-
-    dividerElem = false;
     // add generated html code to document
     if (e["start_date"]["year"] != lastYear) {
       yearCounter += 1;
       lastYear = e["start_date"]["year"];
-      var dividerColor = randColor();
+      dividerColor = colors[yearCounter % colors.length];
 
-      if (COLOR_BY_YEAR) {
-        dividerColor = colors[yearCounter % colors.length];
+      if (DIVIDERS) {
+        var dividerElem = "<div class=\"divider\" style=\"" +
+          "background: " + dividerColor + "\" id=\"" +
+          lastYear + "\">" +
+          lastYear + "</div>";
+        container.append(dividerElem);
       }
-
-      var dividerElem = "<div class=\"divider\" style=\"" +
-        "background: " + dividerColor + "\" id=\"" +
-        lastYear + "\">" +
-        lastYear + "</div>";
     }
 
-    var eventColor = randColor();
-
-    if (COLOR_BY_YEAR) {
-      eventColor = colors[yearCounter % colors.length];
-    }
-
-    var elem = elementToHtml(e, eventColor, infoClass, dateClass);
-
-    if (DIVIDERS && dividerElem !== false) {
-      container.append(dividerElem);
-    }
-
+    var elem = elementToHtml(e, dividerColor, infoClass, dateClass);
     elem = $(elem)
-
     container.append(elem);
 
     maxDateWidth = Math.min(maxDateWidth,
@@ -208,54 +154,29 @@ function loadedData(data, titleText) {
     $("#body").css("marginLeft",
       (maxDateWidth - contcontainerainer.offset().left) / -2.0);
   }
-
-  finishedLoading();
 }
 
 $(function() {
-
   // get window dimensions
   windowDim = {
     x: $(window).width(),
     y: $(window).height()
   };
 
-  isMobile = true; //isMobile || windowDim.x <= 950;
-
   if (isMobile) {
-    $("body").addClass("mobile");
-    //  console.log("skipping mobile");
+    //$("body").addClass("mobile");
+    console.log("skipping mobile");
   }
+  //$("#loadingMessage").html("HAHAHAHA")
 
-  // make list of all data retrieved
-  retrievedData = [];
-  titleText = "";
-  requestsLeft = DATA_FILES.length;
-
-  // iterate through all data files to retrieve
-  DATA_FILES.forEach(function(file) {
-    // asynchronous call to retrieve data
-    $.getJSON(file)
-      .done(function(d) {
-        // add response data to list
-        titleText += d["title"]["text"]["text"];
-        d["events"].forEach(function(entry) {
-          retrievedData.push(entry);
-        });
-      })
-      .fail(function(jqxhr, textStatus, error) {
-        console.log("Couldn't load " + file);
-        console.log("Status: " + textStatus);
-        console.log("Error: " + error);
-      })
-      .always(function() {
-        requestsLeft -= 1;
-
-        // if all requests have finished
-        if (requestsLeft == 0) {
-          console.log(retrievedData);
-          loadedData(retrievedData, titleText);
-        }
-      });
-  });
+  $.getJSON(DATA_FILE)
+    .done(function(d) {
+      loadedData(d["events"], d["title"]["text"]["text"]);
+      $("#loadingMessage").remove();
+    })
+    .fail(function(jqxhr, textStatus, error) {
+      console.log("Couldn't load " + file);
+      console.log("Status: " + textStatus);
+      console.log("Error: " + error);
+    })
 });

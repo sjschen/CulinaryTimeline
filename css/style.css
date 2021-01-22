@@ -8,22 +8,25 @@ body {
   width: 100%;
 }
 
-#loadingMessage {
-  position: fixed;
-  width: 100%;
+#timeline {
+  width: 14px;
+  background: #e8e8e8;
+  border-radius: 7px;
   height: 100%;
-  background: #ffffff;
-  top: 0px;
+  padding: 20px 0px;
+  position: absolute;
+  top: -20px;
   left: 0px;
+  right: 0px;
+  margin: auto;
+  z-index: -1;
 }
 
-#loadingMessage:after {
-  content: "Loading...";
-  position: fixed;
+#loadingMessage {
+  position: relative;
   line-height: 50px;
-  height: 50px;
-  top: 0px;
-  bottom: 0px;
+  padding-top: 50%;
+  height: 100%;
   width: 100%;
   text-align: center;
   margin: auto;
@@ -40,20 +43,6 @@ body {
   margin-bottom: 120px;
 }
 
-#timeline {
-  width: 14px;
-  background: #e8e8e8;
-  border-radius: 7px;
-  height: 100%;
-  padding: 20px 0px;
-  position: absolute;
-  top: -20px;
-  left: 0px;
-  right: 0px;
-  margin: auto;
-  z-index: -1;
-}
-
 .title {
   position: relative;
   width: 50%;
@@ -67,6 +56,8 @@ body {
   text-align: center;
   font-weight: normal;
   font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title a {
