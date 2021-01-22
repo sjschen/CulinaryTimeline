@@ -4,10 +4,6 @@ body {
     font-weight: 300;
 }
 
-#body {
-  width: 100%;
-}
-
 #timeline {
   width: 14px;
   background: #e8e8e8;
@@ -24,8 +20,10 @@ body {
 
 #loadingMessage {
   position: relative;
+  top: 0px;
+  bottom: 0px;
   line-height: 50px;
-  padding-top: 50%;
+  padding-top: 50vh;
   height: 100%;
   width: 100%;
   text-align: center;
@@ -34,7 +32,8 @@ body {
 }
 
 #container {
-  width: 60%;
+  width: 80%;
+  max-width: 2000px;
   margin: auto;
   position: relative;
   left: 0px;
@@ -66,20 +65,6 @@ body {
   font-weight: 500;
 }
 
-.divider {
-  position: relative;
-  width: 350px;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 15px;
-  background: #ffffff;
-  left: 0px;
-  right: 0px;
-  margin: auto;
-  text-align: center;
-  font-weight: normal;
-}
-
 .level {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -94,93 +79,152 @@ body {
    clear: both;
 }
 
-.info {
-  background: #f4f4f4;
-  padding: 10px;
-  width: 45%;
+@media only screen and (max-width: 1000px) {
+
+  .divider {
+    position: relative;
+    width: 30%;
+    height: 0px;
+    background: #ffffff;
+    left: 0px;
+    right: 0px;
+    color: #ffffff;
+  }
+
+  .info {
+    background: #f4f4f4;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .infoDot {
+    position: relative;
+    content: "";
+    display: block;
+    width: 25%;
+    height: 30px;
+    border-radius: 15px;
+    background: #bababa;
+    margin: auto;
+  }
+
+  .infoDate {
+    position: relative;
+    top: 0px;
+    line-height: 30px;
+    border-radius: 15px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+  }
 }
 
-.info.leftInfo {
-  float:left;
-}
+@media only screen and (min-width: 1001px) {
+  .divider {
+    position: relative;
+    width: 30%;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 15px;
+    background: #ffffff;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    text-align: center;
+    font-weight: normal;
+  }
 
-.info.rightInfo {
-  float:right;
-}
+  .info {
+    background: #f4f4f4;
+    padding: 10px;
+    width: 43%;
+  }
 
-.info:after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  position: absolute;
-  top: 0px;
-}
+  .info.leftInfo {
+    float:left;
+  }
 
-.info.leftInfo:after {
-  left: 46.5%;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-left: 15px solid #f4f4f4;
-}
+  .info.rightInfo {
+    float:right;
+  }
 
-.info.rightInfo:after {
-  right: 46.5%;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-right:15px solid #f4f4f4;
-}
+  .info:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0px;
+  }
 
-.infoDate {
-  position: absolute;
-  top: 0px;
-  line-height: 30px;
-  border-radius: 15px;
-  white-space: nowrap;
-  font-size: 16px;
-  font-weight: 500;
-}
+  .info.leftInfo:after {
+    left: 45%;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #f4f4f4;
+  }
 
-.infoDot {
-  position: absolute;
-  content: "";
-  display: block;
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-  background: #bababa;
-  left: 0px;
-  right: 0px;
-  margin: auto;
-  top: 0px;
-}
+  .info.rightInfo:after {
+    right: 45%;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right:15px solid #f4f4f4;
+  }
 
-.infoDot:after {
-  position: absolute;
-  content: "";
-  display: block;
-  width: 18px;
-  height: 18px;
-  border-radius: 9px;
-  background: #ffffff;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  margin: auto;
-}
+  .infoDate {
+    position: absolute;
+    top: 0px;
+    line-height: 30px;
+    border-radius: 15px;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 500;
+  }
 
-.leftDate {
-  text-align: left;
-  padding-right: 20px;
-  padding-left: 35px;
-}
+  .infoDot {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background: #bababa;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    top: 0px;
+  }
 
-.rightDate {
-  text-align: right;
-  padding-right: 35px;
-  padding-left: 20px;
-  right: 0px;
+  .infoDot:after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    background: #ffffff;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+  }
+
+  .leftDate {
+    text-align: left;
+    padding-right: 20px;
+    padding-left: 35px;
+  }
+
+  .rightDate {
+    text-align: right;
+    padding-right: 35px;
+    padding-left: 20px;
+    right: 0px;
+  }
+
 }
 
 .info h1 {

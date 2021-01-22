@@ -1,11 +1,7 @@
 // settings
-var DIVIDERS = true; // false for no year dividers; true for year dividers
+var DIVIDERS = false; // false for no year dividers; true for year dividers
 var DATA_FILE = "./projects.json";
-
-// https://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device-in-jquery
-var isMobile = false;
-
-
+var isMobile = true;
 var colors = ["#ca5454", "#e8a040", "#fcdd75", "#7e92b9", "#ebc59c"];
 
 // function to format date to Month Date, Year
@@ -106,11 +102,10 @@ function loadedData(data, titleText) {
   container.append("<div id=\"timeline\"></div>");
 
   var lastYear = null;
-  var dividerColor = colors[yearCounter % colors.length];
-  var maxDateWidth = 99999;
+  var yearColor = colors[yearCounter % colors.length];
 
   var titleElem = "<div class=\"title\" style=\"" +
-    "background: " + dividerColor + "\">" +
+    "background: " + yearColor + "\">" +
     "<a href=\"" + "http://foodtimeline.org" + //This is a hack
     "\" target=\"_blank\" rel=\"noopener noreferrer\" >" +
     titleText + "</a>" + "</div>";
@@ -126,34 +121,21 @@ function loadedData(data, titleText) {
     if (e["start_date"]["year"] != lastYear) {
       yearCounter += 1;
       lastYear = e["start_date"]["year"];
-      dividerColor = colors[yearCounter % colors.length];
+      yearColor = colors[yearCounter % colors.length];
 
       if (DIVIDERS) {
         var dividerElem = "<div class=\"divider\" style=\"" +
-          "background: " + dividerColor + "\" id=\"" +
+          "background: " + yearColor + "\" id=\"" +
           lastYear + "\">" +
           lastYear + "</div>";
         container.append(dividerElem);
       }
     }
 
-    var elem = elementToHtml(e, dividerColor, infoClass, dateClass);
+    var elem = elementToHtml(e, yearColor, infoClass, dateClass);
     elem = $(elem)
     container.append(elem);
-
-    maxDateWidth = Math.min(maxDateWidth,
-      elem.find(".infoDate").offset().left);
-
   });
-
-
-  // do some visual adjustments for mobile
-  if (isMobile) {
-    // balance container alignment to center content
-    // calculate amount of unused space next to date labels
-    $("#body").css("marginLeft",
-      (maxDateWidth - contcontainerainer.offset().left) / -2.0);
-  }
 }
 
 $(function() {
@@ -163,11 +145,10 @@ $(function() {
     y: $(window).height()
   };
 
-  if (isMobile) {
-    //$("body").addClass("mobile");
-    console.log("skipping mobile");
+  console.log("win: "+ windowDim.x + " " + windowDim.y);
+  if (windowDim.x > 500) {
+    isMobile = true;
   }
-  //$("#loadingMessage").html("HAHAHAHA")
 
   $.getJSON(DATA_FILE)
     .done(function(d) {
