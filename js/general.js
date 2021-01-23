@@ -50,6 +50,8 @@ function elementToHtml(data, myColor, infoClass, dateClass) {
   // generate html code for links section
   links = "<h3>"
   data["media"]["url"].forEach(function(link) {
+    //refer.
+    //data["text"]["headline"]
     links += "<span><a href=\"" + link[1] +
       "\"  target=\"_blank\" rel=\"noopener noreferrer\" >" +
       link[0] + "</a></span>";
@@ -68,8 +70,7 @@ function elementToHtml(data, myColor, infoClass, dateClass) {
     myColor + "\">" +
     data["sDate"] + "</div>" +
     "</div>" +
-    "<div class=\"info " + infoClass + "\">" +
-    "<h1>" + data["text"]["headline"] + "</h1>";
+    "<div class=\"info " + infoClass + "\">";
 
   if (data["text"]["text"] !== "") {
     elem += "<p>" + data["text"]["text"] + "</p>";

@@ -33,7 +33,7 @@ body {
 
 #container {
   width: 80%;
-  max-width: 2000px;
+  max-width: 1000px;
   margin: auto;
   position: relative;
   left: 0px;
@@ -63,8 +63,8 @@ body {
 }
 
 .level {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   width:100%;
   position: relative;
 }
@@ -76,7 +76,7 @@ body {
    clear: both;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 900px) {
   .title {
     width: 75%;
     line-height: 45px;
@@ -134,15 +134,19 @@ body {
   .info h3 {
     margin: 0px;
     padding: 0px;
-    font-size: 28px;
+    font-size: 35px;
     font-weight: 300;
     position: relative;
-    height: 32px;
-    line-height: 32px;
+  }
+
+  .info h3 span a {
+    color: black;
+    text-decoration: underline dotted;
+    font-weight: 500;
   }
 }
 
-@media only screen and (min-width: 1001px) {
+@media only screen and (min-width: 901px) {
   .title {
     line-height: 30px;
     font-size: 20px;
@@ -165,7 +169,7 @@ body {
   .info {
     background: #f4f4f4;
     padding: 10px;
-    width: 43%;
+    width: 44%;
   }
 
   .info.leftInfo {
@@ -186,14 +190,14 @@ body {
   }
 
   .info.leftInfo:after {
-    left: 45%;
+    left: 46%;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
     border-left: 15px solid #f4f4f4;
   }
 
   .info.rightInfo:after {
-    right: 45%;
+    right: 46%;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
     border-right:15px solid #f4f4f4;
@@ -252,7 +256,7 @@ body {
   }
 
   .info h1 {
-    font-size: 16px;
+    font-size: 17px;
     padding: 0px;
     margin: 0px;
     margin-bottom: 5px;
@@ -263,13 +267,17 @@ body {
   .info h3 {
     margin: 0px;
     padding: 0px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
     position: relative;
     height: 18px;
-    line-height: 15px;
   }
 
+  .info h3 span a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+  }
 }
 
 .info p {
@@ -285,12 +293,6 @@ body {
   content: "";
   font-weight: 300;
   margin-right: 10px;
-}
-
-.info h3 span a {
-  color: black;
-  text-decoration: none;
-  font-weight: 500;
 }
 
 h3 span a:hover{
