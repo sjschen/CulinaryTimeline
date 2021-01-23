@@ -45,18 +45,15 @@ body {
 .title {
   position: relative;
   width: 50%;
-  height: 90px;
-  line-height: 90px;
   border-radius: 15px;
   background: #ffffff;
+  padding: 30px;
   left: 0px;
   right: 0px;
   margin: auto;
   text-align: center;
   font-weight: normal;
-  font-size: 20px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .title a {
@@ -80,6 +77,11 @@ body {
 }
 
 @media only screen and (max-width: 1000px) {
+  .title {
+    width: 75%;
+    line-height: 45px;
+    font-size: 40px;
+  }
 
   .divider {
     position: relative;
@@ -119,9 +121,33 @@ body {
     font-weight: 500;
     text-align: center;
   }
+
+  .info h1 {
+    font-size: 35px;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    width: 100%;
+  }
+
+  .info h3 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 28px;
+    font-weight: 300;
+    position: relative;
+    height: 32px;
+    line-height: 32px;
+  }
 }
 
 @media only screen and (min-width: 1001px) {
+  .title {
+    line-height: 30px;
+    font-size: 20px;
+  }
+
   .divider {
     position: relative;
     width: 30%;
@@ -225,19 +251,25 @@ body {
     right: 0px;
   }
 
-}
+  .info h1 {
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    width: 100%;
+  }
 
-.info h1 {
-  font-size: 16px;
-  padding: 0px;
-  margin: 0px;
-  margin-bottom: 5px;
-  font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: block;
-  width: 100%;
+  .info h3 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-weight: 300;
+    position: relative;
+    height: 18px;
+    line-height: 15px;
+  }
+
 }
 
 .info p {
@@ -247,19 +279,6 @@ body {
   margin-bottom: 5px;
   text-overflow: ellipsis;
   font-weight: 300;
-}
-
-.info h3 {
-  margin: 0px;
-  padding: 0px;
-  font-size: 14px;
-  font-weight: 300;
-  position: relative;
-  height: 18px;
-  line-height: 15px;
-  overflow: hidden;
-  text-overflow: hidden;
-  white-space: nowrap;
 }
 
 .info h3:before {
