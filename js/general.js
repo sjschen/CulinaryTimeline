@@ -59,9 +59,9 @@ function convertDates(data) {
   return data;
 }
 
-function elementToHtml(data, myColor, infoClass, dateClass) {
+function makeLinks(data) {
   // generate html code for links section
-  links = "<h3>"
+  var links = "<h3>"
   data["media"]["url"].forEach(function(link) {
     //refer.
     //data["text"]["headline"]
@@ -78,28 +78,7 @@ function elementToHtml(data, myColor, infoClass, dateClass) {
   }
   links += "</h3>";
 
-  // time block generate view
-  var elem = "<div class=\"level\">" +
-    "<div class=\"infoDot\" style=\"background : " +
-    myColor + "\">" +
-    "<div class=\"infoDate " +
-    dateClass + "\" style=\"background: " +
-    myColor + "\">" +
-    data["sDate"] + "</div>" +
-    "</div>" +
-    "<div class=\"info " + infoClass + "\">";
-
-  if (data["text"]["text"] !== "") {
-    elem += "<p>" + data["text"]["text"] + "</p>";
-  }
-
-  if (data["media"]["url"].length !== 0) {
-    elem += links
-  }
-
-  elem += "</div>" + "</div>";
-
-  return elem;
+  return links;
 }
 
 function loadedData(data, titleText) {
@@ -120,6 +99,7 @@ function loadedData(data, titleText) {
   container.append("<div id=\"timeline\"></div>");
 
   var lastYear = null;
+  var lastDisplayDate = null;
   var yearColor = colors[yearCounter % colors.length];
 
   var titleElem = "<div class=\"title\" style=\"" +
@@ -129,18 +109,48 @@ function loadedData(data, titleText) {
     titleText + "</a>" + "</div>";
   container.append(titleElem);
 
+  var links = "";
+
   // loop on each event to be added
   data.forEach(function(e) {
     var infoClass = (counter % 2 == 0 ? "leftInfo" : "rightInfo")
     var dateClass = (counter % 2 == 0 ? "leftDate" : "rightDate")
     counter += 1;
 
+    if (lastYear == null){
+        lastYear = e["start_date"]["year"];
+        lastDisplayDate = e["sDate"];
+    }
+    else if (e["start_date"]["year"] != lastYear) {
+      // time block generate view
+      var elem = "<div class=\"level\">" +
+        "<div class=\"infoDot\" style=\"background : " +
+        yearColor + "\">" +
+        "<div class=\"infoDate " +
+        dateClass + "\" style=\"background: " +
+        yearColor + "\">" +
+        lastDisplayDate + "</div>" +
+        "</div>" +
+        "<div class=\"info " + infoClass + "\">";
 
-    if (e["start_date"]["year"] != lastYear) {
+      if (e["text"]["text"] !== "") {
+        elem += "<p>" + e["text"]["text"] + "</p>";
+      }
+      if (e["media"]["url"].length !== 0) {
+        elem += links
+      }
+
+      elem += "</div>" + "</div>";
+      elem = $(elem)
+
+      container.append(elem);
+
+      //Reset everything
       yearCounter += 1;
-      lastYear = e["start_date"]["year"];
       yearColor = colors[yearCounter % colors.length];
-
+      lastYear = e["start_date"]["year"];
+      lastDisplayDate = e["sDate"];
+      links = ""
       if (DIVIDERS) {
         var dividerElem = "<div class=\"divider\" style=\"" +
           "background: " + yearColor + "\" id=\"" +
@@ -150,9 +160,7 @@ function loadedData(data, titleText) {
       }
     }
 
-    var elem = elementToHtml(e, yearColor, infoClass, dateClass);
-    elem = $(elem)
-    container.append(elem);
+    links = "<p>" + makeLinks(e) + "</p>" + links;
   });
 }
 
