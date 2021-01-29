@@ -63,13 +63,8 @@ body {
 }
 
 .level {
-  margin-top: 10px;
-  margin-bottom: 10px;
   width:100%;
   position: relative;
-}
-
-.level:after {
    content: "";
    display: table;
    clear:both;
@@ -80,6 +75,11 @@ body {
     width: 75%;
     line-height: 45px;
     font-size: 40px;
+  }
+
+  .level {
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 
   .divider {
@@ -151,6 +151,10 @@ body {
     font-size: 20px;
   }
 
+  .level {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   .divider {
     position: relative;
     width: 30%;

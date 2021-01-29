@@ -113,19 +113,21 @@ function loadedData(data, titleText) {
 
   // loop on each event to be added
   data.forEach(function(e) {
-    var infoClass = (counter % 2 == 0 ? "leftInfo" : "rightInfo")
-    var dateClass = (counter % 2 == 0 ? "leftDate" : "rightDate")
-    counter += 1;
-
     if (lastYear == null){
-        lastYear = e["start_date"]["year"];
-        lastDisplayDate = e["sDate"];
+      lastYear = e["start_date"]["year"];
+      lastDisplayDate = e["sDate"];
+      infoClass = (counter % 2 == 0 ? "leftInfo" : "rightInfo")
+      dateClass = (counter % 2 == 0 ? "leftDate" : "rightDate")
     }
     else if (e["start_date"]["year"] != lastYear) {
+      counter += 1;
+      var infoClass = (counter % 2 == 0 ? "leftInfo" : "rightInfo")
+      var dateClass = (counter % 2 == 0 ? "leftDate" : "rightDate")
+
       // time block generate view
       var elem = "<div class=\"level\">" +
         "<div class=\"infoDot\" style=\"background : " +
-        yearColor + "\">" +
+yearColor + "\">" +
         "<div class=\"infoDate " +
         dateClass + "\" style=\"background: " +
         yearColor + "\">" +
