@@ -66,7 +66,7 @@ function elementToHtml(data, myColor, infoClass, dateClass) {
     //refer.
     //data["text"]["headline"]
     if (link[1] == ""){
-      links += "<span>" + link[0] + "</span>";
+      links += "<span> " + link[0] + " </span>";
     }else{
       links += "<span><a href=\"" + link[1] +
         "\"  target=\"_blank\" rel=\"noopener noreferrer\" >" +
