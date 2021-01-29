@@ -63,17 +63,16 @@ body {
 }
 
 .level {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   width:100%;
   position: relative;
 }
 
 .level:after {
-   content: " ";
-   display: block;
-   height: 0;
-   clear: both;
+   content: "";
+   display: table;
+   clear:both;
 }
 
 @media only screen and (max-width: 1100px) {
@@ -141,7 +140,7 @@ body {
 
   .info h3 span a {
     color: black;
-    text-decoration: underline dotted;
+    text-decoration: none;
     font-weight: 500;
   }
 }
@@ -182,7 +181,7 @@ body {
 
   .info:after {
     content: "";
-    display: block;
+    /* display: block; */
     width: 0;
     height: 0;
     position: absolute;
@@ -246,6 +245,7 @@ body {
     text-align: left;
     padding-right: 20px;
     padding-left: 35px;
+    left:0px;
   }
 
   .rightDate {
