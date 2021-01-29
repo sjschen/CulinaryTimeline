@@ -33,7 +33,7 @@ body {
 
 #container {
   width: 80%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: auto;
   position: relative;
   left: 0px;
@@ -115,7 +115,7 @@ body {
     position: relative;
     top: 0px;
     line-height: 30px;
-    border-radius: 15px;
+    border-radius: 25px;
     white-space: nowrap;
     font-size: 16px;
     font-weight: 500;
@@ -134,7 +134,7 @@ body {
   .info h3 {
     margin: 0px;
     padding: 0px;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 300;
     position: relative;
   }
@@ -190,14 +190,14 @@ body {
   }
 
   .info.leftInfo:after {
-    left: 46%;
+    left: 45.5%;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
     border-left: 15px solid #f4f4f4;
   }
 
   .info.rightInfo:after {
-    right: 46%;
+    right: 45.5%;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
     border-right:15px solid #f4f4f4;
@@ -270,12 +270,11 @@ body {
     font-size: 16px;
     font-weight: 300;
     position: relative;
-    height: 18px;
   }
 
   .info h3 span a {
     color: black;
-    text-decoration: none;
+    text-decoration: underline dotted;
     font-weight: 500;
   }
 }
@@ -289,17 +288,17 @@ body {
   font-weight: 300;
 }
 
-.info h3:before {
+/* .info h3:before {
   content: "";
   font-weight: 300;
   margin-right: 10px;
-}
+} */
 
 h3 span a:hover{
   color: grey;
 }
 
-.info h3 span:after {
+/* .info h3 span:after {
   content: "";
   display: inline-block;
   width: 6px;
@@ -312,4 +311,4 @@ h3 span a:hover{
 
 .info h3 span:last-child:after {
   display: none;
-}
+} */

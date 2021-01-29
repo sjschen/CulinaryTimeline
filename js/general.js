@@ -5,7 +5,7 @@ var isMobile = true;
 var colors = ["#ca5454", "#e8a040", "#fcdd75", "#7e92b9", "#ebc59c"];
 
 // function to format date to Month Date, Year
-function formatDate(date) {
+function formatDate(date, startDate, endDate) {
   var monthNames = [
     "January", "February", "March",
     "April", "May", "June", "July",
@@ -19,6 +19,19 @@ function formatDate(date) {
     if (date.getDate()) {
       outString += ' ' + date.getDate();
     }
+  }else{ //year only date sometimes need mods to be more readable
+    if (endDate){
+      outString += "..." //dummy
+      //spanTermify(startDate["year"], endDate["year"])
+    }else{
+      var yearInt = parseInt(startDate["year"]);
+      if (yearInt <= -20000){
+        outString = "Ancient"
+      }
+      else if (yearInt <  0){
+        outString = (-yearInt).toString() + "BC";
+      }
+    }
   }
   //monthNames[monthIndex] +  ' ' + day + ', ' + year;
   return outString;
@@ -27,21 +40,21 @@ function formatDate(date) {
 // function to convert date strings to date objects
 function convertDates(data) {
   for (i = 0; i < data.length; i++) {
-    var original = data[i]["start_date"];
+    var startDate = data[i]["start_date"];
     var dateTime = new Date();
 
-    if ("year" in original && original["year"]) {
-      dateTime.setFullYear(original["year"]);
-      if ("month" in original && original["month"]) {
-        dateTime.setMonth(original["month"]);
-        if ("day" in original && original["day"]) {
-          dateTime.setDate(original["day"]);
+    if ("year" in startDate && startDate["year"]) {
+      dateTime.setFullYear(startDate["year"]);
+      if ("month" in startDate && startDate["month"]) {
+        dateTime.setMonth(startDate["month"]);
+        if ("day" in startDate && startDate["day"]) {
+          dateTime.setDate(startDate["day"]);
         }
       }
     }
 
     data[i]["date"] = dateTime;
-    data[i]["sDate"] = formatDate(dateTime);
+    data[i]["sDate"] = formatDate(dateTime, startDate, data[i]["end_date"]);
   }
   return data;
 }
@@ -52,9 +65,13 @@ function elementToHtml(data, myColor, infoClass, dateClass) {
   data["media"]["url"].forEach(function(link) {
     //refer.
     //data["text"]["headline"]
-    links += "<span><a href=\"" + link[1] +
-      "\"  target=\"_blank\" rel=\"noopener noreferrer\" >" +
-      link[0] + "</a></span>";
+    if (link[1] == ""){
+      links += "<span>" + link[0] + "</span>";
+    }else{
+      links += "<span><a href=\"" + link[1] +
+        "\"  target=\"_blank\" rel=\"noopener noreferrer\" >" +
+        link[0] + "</a></span>";
+    }
   });
   if (data["media"]["url"].length == 0) {
     links += "None";
@@ -118,7 +135,7 @@ function loadedData(data, titleText) {
     var dateClass = (counter % 2 == 0 ? "leftDate" : "rightDate")
     counter += 1;
 
-    // add generated html code to document
+
     if (e["start_date"]["year"] != lastYear) {
       yearCounter += 1;
       lastYear = e["start_date"]["year"];
