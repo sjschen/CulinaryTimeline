@@ -137,13 +137,18 @@ function loadedData(data, titleText, chrono) {
     titleBgColor = colors[1];
   }
 
+  for (var i=0; i<data.length; i++)
+  {
+      data[i].index = i;
+  }
+
   // sort events by date
   data.sort(function(a, b) {
     if (chrono){
-      return a["date"] > b["date"];
+      return a["date"] - b["date"] || a.index - b.index;
     }
     else{
-      return a["date"] < b["date"];
+      return b["date"] - a["date"] || a.index - b.index;
     }
   });
 
