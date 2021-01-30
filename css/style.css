@@ -2,6 +2,7 @@
     --colour0: #555;
     --colour2: #ebc79e;
     --colour1: #8E2323;
+    --colour3: #003366;
 }
 
 body {
@@ -12,7 +13,7 @@ body {
 
 #timeline {
   width: 14px;
-  background: #003366;
+  background: var(--colour3);
   border-radius: 7px;
   height: 100%;
   padding: 20px 0px;
@@ -66,6 +67,31 @@ body {
   font-weight: 500;
 }
 
+.heading {
+  display: table-cell;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.headLeft {
+  width:50%;
+  text-align: left;
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+  padding-right: 25px;
+  padding-left: 25px;
+  left:0px;
+}
+
+.headRight {
+  text-align: right;
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+  padding-right: 25px;
+  padding-left: 25px;
+  right: 0px;
+}
 .level {
   width:100%;
   position: relative;
@@ -79,6 +105,12 @@ body {
     width: 75%;
     line-height: 50px;
     font-size: 40px;
+  }
+
+  .heading {
+    line-height: 40px;
+    font-size: 50px;
+    font-weight: 500;
   }
 
   .level {
@@ -177,13 +209,19 @@ body {
 
 @media only screen and (orientation: landscape) {
   .title {
-    line-height: 30px;
-    font-size: 20px;
+    line-height: 35px;
+    font-size: 28px;
+  }
+
+  .heading {
+    line-height: 25px;
+    font-size: 18px;
+    font-weight: 500;
   }
 
   .level {
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   .info {
@@ -358,6 +396,8 @@ h3 span a:hover{
   color: grey;
 }
 
+
+/* slider toggle */
 .switch {
   position: relative;
   display: inline-block;

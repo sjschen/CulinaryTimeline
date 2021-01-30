@@ -2,7 +2,8 @@
 var DATA_FILE = "./projects.json";
 var colors = [getComputedStyle(document.documentElement).getPropertyValue('--colour0'),
     getComputedStyle(document.documentElement).getPropertyValue('--colour1'),
-    getComputedStyle(document.documentElement).getPropertyValue('--colour2')];
+    getComputedStyle(document.documentElement).getPropertyValue('--colour2'),
+    getComputedStyle(document.documentElement).getPropertyValue('--colour3')];
 
 // function to format date to Month Date, Year
 function formatDate(date, startDate, endDate) {
@@ -97,7 +98,7 @@ function makeLinks(data) {
 }
 
 function makeElement( links, lastGroup, lastDisplayDate){
-  if (lastGroup == "recipe"){
+  if (lastGroup == "ingredient"){
     infoClass = "leftInfo" ;
     dateClass = "leftDate";
     yearColor = colors[1];
@@ -165,6 +166,13 @@ function loadedData(data, titleText, chrono) {
     "\" target=\"_blank\" rel=\"noopener noreferrer\" >" +
     titleText + "</a>" + "</div>";
   container.append(titleElem);
+
+  var headingElem = "<div class=\"level\">" +
+  "<div class=\"heading headLeft\" style=\" background: " + titleBgColor + ";" + "color: " + titleColor + "\"> 🠗 Ingredients </div>" +
+  "<div class=\"heading headRight\" style=\" background: " + titleBgColor +  ";" + "color: " + titleColor +  "\"> Recipes 🠗 </div>" + "</div>";
+  container.append(headingElem);
+
+  container.append("<div class=\"level\"></div>");
 
   var links = "";
 
