@@ -1,5 +1,5 @@
 :root {
-    --colour0: #555;
+    --colour0: #333;
     --colour2: #ebc79e;
     --colour1: #8E2323;
     --colour3: #003366;
@@ -7,8 +7,8 @@
 
 body {
   margin: 0px;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 300;
+  font-weight: 300;
+  color: #888;
 }
 
 #timeline {
@@ -109,13 +109,13 @@ body {
 
   .heading {
     line-height: 40px;
-    font-size: 50px;
+    font-size: 30px;
     font-weight: 500;
   }
 
   .level {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 35px;
+    margin-bottom: 45px;
   }
 
   .info {
@@ -220,8 +220,8 @@ body {
   }
 
   .level {
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 20px;
   }
 
   .info {
@@ -335,7 +335,6 @@ body {
     width: 120px;
     height: 34px;
   }
-
 
   .slider.round:before {
     border-radius: 50%;
