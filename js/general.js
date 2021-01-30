@@ -191,15 +191,14 @@ function loadedData(data, titleText, chrono) {
 
 
 function renderTimeline(){
-    // Get the checkbox
+  // Get the checkbox
   var checkBox = document.getElementById("chrono");
-  var chrono = ! checkBox.checked;
 
   $("#container").empty();
 
   $.getJSON(DATA_FILE)
     .done(function(d) {
-      loadedData(d["events"], d["title"]["text"]["text"], chrono);
+      loadedData(d["events"], d["title"]["text"]["text"], !checkBox.checked);
       $("#loadingMessage").remove();
     })
     .fail(function(jqxhr, textStatus, error) {
