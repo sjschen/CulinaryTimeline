@@ -65,9 +65,9 @@ body {
 .level {
   width:100%;
   position: relative;
-   content: "";
-   display: table;
-   clear:both;
+  content: "";
+  display: table;
+  clear:both;
 }
 
 @media only screen and (orientation: portrait){
@@ -103,7 +103,7 @@ body {
     position: relative;
     content: "";
     display: block;
-    width: 25%;
+    width: 50%;
     height: 30px;
     border-radius: 15px;
     background: #bababa;

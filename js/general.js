@@ -21,8 +21,26 @@ function formatDate(date, startDate, endDate) {
     }
   }else{ //year only date sometimes need mods to be more readable
     if (endDate){
-      outString += "..." //dummy
-      //spanTermify(startDate["year"], endDate["year"])
+      var startYear = parseInt(startDate["year"]);
+      var span = parseInt(endDate["year"]) - startYear;
+
+      if (span == 99){
+        var century = ((startYear / 100) + 1).toString();
+        var onesDigit = century.charAt(century.length - 1)
+        var eth = "th";
+        if (onesDigit == "1"){
+          eth = "st";
+        }else if (onesDigit == "2"){
+          eth = "nd";
+        }else if (onesDigit == "3"){
+          eth = "rd";
+        }
+        outString = century + eth + " century"
+      } else if (span == 9){
+        outString = startYear + "s";
+      } else{
+        outString = startDate["year"] + " - " + endDate["year"];
+      }
     }else{
       var yearInt = parseInt(startDate["year"]);
       if (yearInt <= -20000){
@@ -84,8 +102,6 @@ function makeLinks(data) {
 function loadedData(data, titleText) {
   var container = $("#container");
 
-  // counter to make sure no more than 2 adjacent events go to same side
-  var counter = 0;
   var yearCounter = 0;
 
   // change date strings to date objects
@@ -100,7 +116,8 @@ function loadedData(data, titleText) {
 
   var lastYear = null;
   var lastDisplayDate = null;
-  var yearColor = colors[yearCounter % colors.length];
+  var lastGroup = null;
+  var yearColor = colors[0]; //[yearCounter % colors.length];
 
   var titleElem = "<div class=\"title\" style=\"" +
     "background: " + yearColor + "\">" +
@@ -116,21 +133,21 @@ function loadedData(data, titleText) {
     if (lastYear == null){
       lastYear = e["start_date"]["year"];
       lastDisplayDate = e["sDate"];
-      infoClass = (counter % 2 == 0 ? "leftInfo" : "rightInfo")
-      dateClass = (counter % 2 == 0 ? "leftDate" : "rightDate")
+      lastGroup = e["group"];
     }
-    else if (e["start_date"]["year"] != lastYear) {
-      counter += 1;
-      var infoClass = (counter % 2 == 0 ? "leftInfo" : "rightInfo")
-      var dateClass = (counter % 2 == 0 ? "leftDate" : "rightDate")
+    else if (e["start_date"]["year"] != lastYear || e["group"] != lastGroup) {
+      if (lastGroup == "recipe"){
+        infoClass = "leftInfo" ;
+        dateClass = "leftDate";
+      }else{
+          infoClass = "rightInfo" ;
+          dateClass = "rightDate";
+      }
 
       // time block generate view
       var elem = "<div class=\"level\">" +
-        "<div class=\"infoDot\" style=\"background : " +
-yearColor + "\">" +
-        "<div class=\"infoDate " +
-        dateClass + "\" style=\"background: " +
-        yearColor + "\">" +
+        "<div class=\"infoDot\" style=\"background : " + yearColor + "\">" +
+        "<div class=\"infoDate " + dateClass + "\" style=\"background: " + yearColor + "\">" +
         lastDisplayDate + "</div>" +
         "</div>" +
         "<div class=\"info " + infoClass + "\">";
@@ -141,17 +158,18 @@ yearColor + "\">" +
       if (e["media"]["url"].length !== 0) {
         elem += links
       }
-
       elem += "</div>" + "</div>";
-      elem = $(elem)
 
-      container.append(elem);
+      container.append($(elem));
 
       //Reset everything
-      yearCounter += 1;
-      yearColor = colors[yearCounter % colors.length];
+      if(e["start_date"]["year"] != lastYear ){
+        yearCounter += 1;
+        yearColor = colors[yearCounter % colors.length];
+      }
       lastYear = e["start_date"]["year"];
       lastDisplayDate = e["sDate"];
+      lastGroup = e["group"];
       links = ""
       if (DIVIDERS) {
         var dividerElem = "<div class=\"divider\" style=\"" +
