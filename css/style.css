@@ -1,7 +1,7 @@
 :root {
-    --colour0: #777;
-    --colour2: #425664;
-    --colour1: #c6ad8f;
+    --colour0: #555;
+    --colour2: #ebc79e;
+    --colour1: #8E2323;
 }
 
 body {
@@ -12,7 +12,7 @@ body {
 
 #timeline {
   width: 14px;
-  background: #e8e8e8;
+  background: #003366;
   border-radius: 7px;
   height: 100%;
   padding: 20px 0px;
@@ -139,6 +139,28 @@ body {
     text-decoration: none;
     font-weight: 500;
   }
+
+
+  /* slider toggle*/
+  .switch {
+    width: 60px;
+    height: 60px;
+  }
+
+  .backTime, .foreTime
+  {
+    font-size: 30px;
+  }
+
+  .backTime:before
+  {
+    content:">>";
+  }
+
+  .foreTime::before
+  {
+    content:"<<";
+  }
 }
 
 @media only screen and (orientation: landscape) {
@@ -264,6 +286,51 @@ body {
     text-decoration: underline dotted;
     font-weight: 500;
   }
+
+
+  /* slider toggle*/
+  .switch {
+    width: 120px;
+    height: 34px;
+  }
+
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .3s;
+    transition: .3s;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(85px);
+    -ms-transform: translateX(85px);
+    transform: translateX(85px);
+  }
+
+  .backTime, .foreTime
+  {
+    font-size: 13px;
+  }
+
+  .backTime:before
+  {
+    content:"Reverse";
+  }
+
+  .foreTime::before
+  {
+    content:"Chrono";
+  }
 }
 
 .info p {
@@ -283,8 +350,6 @@ h3 span a:hover{
   position: relative;
   display: inline-block;
   margin: 15px;
-  width: 120px;
-  height: 34px;
 }
 
 .switch input {
@@ -304,18 +369,6 @@ h3 span a:hover{
   transition: .4s;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .3s;
-  transition: .3s;
-}
-
 input:checked + .slider {
   background-color: var(--colour1);
   color: var(--colour2);
@@ -325,10 +378,13 @@ input:focus + .slider {
   box-shadow: 0 0 1px var(--colour1);
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(85px);
-  -ms-transform: translateX(85px);
-  transform: translateX(85px);
+.backTime, .foreTime
+{
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  font-weight: 500;
 }
 
 .backTime
@@ -336,25 +392,16 @@ input:checked + .slider:before {
   display: none;
 }
 
-.backTime, .foreTime
+input:checked + .slider .backTime
 {
-  position: absolute;
-  transform: translate(-50%,-50%);
-  top: 50%;
-  left: 50%;
-  font-size: 12px;
-  font-weight: 500;
+  display: block;
 }
 
-input:checked+ .slider .backTime
-{display: block;}
-
 input:checked + .slider .foreTime
-{display: none;}
+{
+  display: none;
+}
 
 .slider.round {
   border-radius: 34px;
 }
-
-.slider.round:before {
-  border-radius: 50%;}
