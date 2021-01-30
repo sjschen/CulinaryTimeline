@@ -1,3 +1,9 @@
+:root {
+    --colour0: #777;
+    --colour2: #425664;
+    --colour1: #c6ad8f;
+}
+
 body {
   margin: 0px;
     font-family: 'Ubuntu', sans-serif;
@@ -46,7 +52,6 @@ body {
   position: relative;
   width: 50%;
   border-radius: 15px;
-  background: #ffffff;
   padding: 30px;
   left: 0px;
   right: 0px;
@@ -57,7 +62,7 @@ body {
 }
 
 .title a {
-  color: black !important;
+  /* color: var(--colour2) !important; */
   text-decoration: none;
   font-weight: 500;
 }
@@ -82,16 +87,6 @@ body {
     margin-bottom: 30px;
   }
 
-  .divider {
-    position: relative;
-    width: 30%;
-    height: 0px;
-    background: #ffffff;
-    left: 0px;
-    right: 0px;
-    color: #ffffff;
-  }
-
   .info {
     background: #f4f4f4;
     padding: 10px;
@@ -106,7 +101,7 @@ body {
     width: 50%;
     height: 30px;
     border-radius: 15px;
-    background: #bababa;
+    background: #f4f4f4;
     margin: auto;
   }
 
@@ -119,6 +114,7 @@ body {
     font-size: 30px;
     font-weight: 500;
     text-align: center;
+    color: var(--colour0);
   }
 
   .info h1 {
@@ -139,7 +135,7 @@ body {
   }
 
   .info h3 span a {
-    color: black;
+    color: var(--colour0);
     text-decoration: none;
     font-weight: 500;
   }
@@ -154,19 +150,6 @@ body {
   .level {
     margin-top: 10px;
     margin-bottom: 10px;
-  }
-  .divider {
-    position: relative;
-    width: 30%;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 15px;
-    background: #ffffff;
-    left: 0px;
-    right: 0px;
-    margin: auto;
-    text-align: center;
-    font-weight: normal;
   }
 
   .info {
@@ -185,7 +168,6 @@ body {
 
   .info:after {
     content: "";
-    /* display: block; */
     width: 0;
     height: 0;
     position: absolute;
@@ -214,6 +196,7 @@ body {
     white-space: nowrap;
     font-size: 16px;
     font-weight: 500;
+    color: var(--colour0);
   }
 
   .infoDot {
@@ -277,7 +260,7 @@ body {
   }
 
   .info h3 span a {
-    color: black;
+    color: var(--colour0);
     text-decoration: underline dotted;
     font-weight: 500;
   }
@@ -292,27 +275,86 @@ body {
   font-weight: 300;
 }
 
-/* .info h3:before {
-  content: "";
-  font-weight: 300;
-  margin-right: 10px;
-} */
-
 h3 span a:hover{
   color: grey;
 }
 
-/* .info h3 span:after {
-  content: "";
+.switch {
+  position: relative;
   display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 3px;
-  background: black;
-  margin: 0px 15px;
-  vertical-align: middle;
+  margin: 15px;
+  width: 120px;
+  height: 34px;
 }
 
-.info h3 span:last-child:after {
+.switch input {
+  display:none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--colour2);
+  color: var(--colour1);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+input:checked + .slider {
+  background-color: var(--colour1);
+  color: var(--colour2);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--colour1);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(85px);
+  -ms-transform: translateX(85px);
+  transform: translateX(85px);
+}
+
+.backTime
+{
   display: none;
-} */
+}
+
+.backTime, .foreTime
+{
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+input:checked+ .slider .backTime
+{display: block;}
+
+input:checked + .slider .foreTime
+{display: none;}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;}

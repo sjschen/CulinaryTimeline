@@ -1,8 +1,8 @@
 // settings
-var DIVIDERS = false; // false for no year dividers; true for year dividers
 var DATA_FILE = "./projects.json";
-var isMobile = true;
-var colors = ["#ca5454", "#e8a040", "#fcdd75", "#7e92b9", "#ebc59c"];
+var colors = [getComputedStyle(document.documentElement).getPropertyValue('--colour0'),
+    getComputedStyle(document.documentElement).getPropertyValue('--colour1'),
+    getComputedStyle(document.documentElement).getPropertyValue('--colour2')];
 
 // function to format date to Month Date, Year
 function formatDate(date, startDate, endDate) {
@@ -20,10 +20,10 @@ function formatDate(date, startDate, endDate) {
       outString += ' ' + date.getDate();
     }
   }else{ //year only date sometimes need mods to be more readable
-    if (endDate){
-      var startYear = parseInt(startDate["year"]);
-      var span = parseInt(endDate["year"]) - startYear;
+    var startYear = parseInt(startDate["year"]);
 
+    if (endDate){ //The named decades and century
+      var span = parseInt(endDate["year"]) - startYear;
       if (span == 99){
         var century = ((startYear / 100) + 1).toString();
         var onesDigit = century.charAt(century.length - 1)
@@ -41,14 +41,11 @@ function formatDate(date, startDate, endDate) {
       } else{
         outString = startDate["year"] + " - " + endDate["year"];
       }
-    }else{
-      var yearInt = parseInt(startDate["year"]);
-      if (yearInt <= -20000){
-        outString = "Ancient"
-      }
-      else if (yearInt <  0){
-        outString = (-yearInt).toString() + "BC";
-      }
+    }else if (startYear <= -20000){
+      outString = "Ancient"
+    }
+    else if (startYear <  0){
+      outString = (-startYear).toString() + "BC";
     }
   }
   //monthNames[monthIndex] +  ' ' + day + ', ' + year;
@@ -99,17 +96,55 @@ function makeLinks(data) {
   return links;
 }
 
-function loadedData(data, titleText) {
-  var container = $("#container");
+function makeElement( links, lastGroup, lastDisplayDate){
+  if (lastGroup == "recipe"){
+    infoClass = "leftInfo" ;
+    dateClass = "leftDate";
+    yearColor = colors[1];
+    yearBgColor = colors[2];
 
-  var yearCounter = 0;
+  }else{
+    infoClass = "rightInfo" ;
+    dateClass = "rightDate";
+    yearColor = colors[2];
+    yearBgColor = colors[1];
+  }
+
+  // time block generate view
+  var elem = "<div class=\"level\">" +
+    "<div class=\"infoDot\">" +
+    "<div class=\"infoDate " + dateClass + "\" style=\"background: " + yearBgColor + ";" + "color: " + yearColor + "\">" +
+    lastDisplayDate + "</div>" +
+    "</div>" +
+    "<div class=\"info " + infoClass + "\">";
+    elem += links
+  elem += "</div>" + "</div>";
+
+  return elem;
+}
+
+function loadedData(data, titleText, chrono) {
+  var container = $("#container");
 
   // change date strings to date objects
   data = convertDates(data);
 
+  if(chrono){
+    titleColor = colors[1];
+    titleBgColor = colors[2];
+  }else{
+    titleColor = colors[2];
+    titleBgColor = colors[1];
+  }
+
   // sort events by date
   data.sort(function(a, b) {
-    return a["date"] < b["date"];
+    if (chrono){
+      return a["date"] > b["date"];
+    }
+    else{
+      return a["date"] < b["date"];
+    }
   });
 
   container.append("<div id=\"timeline\"></div>");
@@ -117,11 +152,11 @@ function loadedData(data, titleText) {
   var lastYear = null;
   var lastDisplayDate = null;
   var lastGroup = null;
-  var yearColor = colors[0]; //[yearCounter % colors.length];
 
   var titleElem = "<div class=\"title\" style=\"" +
-    "background: " + yearColor + "\">" +
-    "<a href=\"" + "http://foodtimeline.org" + //This is a hack
+    "background: " + titleBgColor + "\">" +
+    "<a href=\"" + "http://foodtimeline.org\"" + //This is a hack
+    "style= \"color:" + titleColor +
     "\" target=\"_blank\" rel=\"noopener noreferrer\" >" +
     titleText + "</a>" + "</div>";
   container.append(titleElem);
@@ -136,69 +171,35 @@ function loadedData(data, titleText) {
       lastGroup = e["group"];
     }
     else if (e["start_date"]["year"] != lastYear || e["group"] != lastGroup) {
-      if (lastGroup == "recipe"){
-        infoClass = "leftInfo" ;
-        dateClass = "leftDate";
-      }else{
-          infoClass = "rightInfo" ;
-          dateClass = "rightDate";
-      }
+      container.append($(makeElement(links, lastGroup, lastDisplayDate)));
 
-      // time block generate view
-      var elem = "<div class=\"level\">" +
-        "<div class=\"infoDot\" style=\"background : " + yearColor + "\">" +
-        "<div class=\"infoDate " + dateClass + "\" style=\"background: " + yearColor + "\">" +
-        lastDisplayDate + "</div>" +
-        "</div>" +
-        "<div class=\"info " + infoClass + "\">";
-
-      if (e["text"]["text"] !== "") {
-        elem += "<p>" + e["text"]["text"] + "</p>";
-      }
-      if (e["media"]["url"].length !== 0) {
-        elem += links
-      }
-      elem += "</div>" + "</div>";
-
-      container.append($(elem));
-
-      //Reset everything
-      if(e["start_date"]["year"] != lastYear ){
-        yearCounter += 1;
-        yearColor = colors[yearCounter % colors.length];
-      }
       lastYear = e["start_date"]["year"];
       lastDisplayDate = e["sDate"];
       lastGroup = e["group"];
       links = ""
-      if (DIVIDERS) {
-        var dividerElem = "<div class=\"divider\" style=\"" +
-          "background: " + yearColor + "\" id=\"" +
-          lastYear + "\">" +
-          lastYear + "</div>";
-        container.append(dividerElem);
-      }
     }
 
-    links = "<p>" + makeLinks(e) + "</p>" + links;
+    if (chrono){
+      links += "<p>" + makeLinks(e) + "</p>";
+    }else{
+      links = "<p>" + makeLinks(e) + "</p>" + links;
+    }
   });
+  container.append($(makeElement(links, lastGroup, lastDisplayDate)));
+  console.log("Is chrono: " + chrono);
 }
 
-$(function() {
-  // get window dimensions
-  windowDim = {
-    x: $(window).width(),
-    y: $(window).height()
-  };
 
-  console.log("win: "+ windowDim.x + " " + windowDim.y);
-  if (windowDim.x > 500) {
-    isMobile = true;
-  }
+function renderTimeline(){
+    // Get the checkbox
+  var checkBox = document.getElementById("chrono");
+  var chrono = ! checkBox.checked;
+
+  $("#container").empty();
 
   $.getJSON(DATA_FILE)
     .done(function(d) {
-      loadedData(d["events"], d["title"]["text"]["text"]);
+      loadedData(d["events"], d["title"]["text"]["text"], chrono);
       $("#loadingMessage").remove();
     })
     .fail(function(jqxhr, textStatus, error) {
@@ -206,4 +207,9 @@ $(function() {
       console.log("Status: " + textStatus);
       console.log("Error: " + error);
     })
+}
+
+
+$(function() {
+  renderTimeline();
 });

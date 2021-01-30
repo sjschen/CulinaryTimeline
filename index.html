@@ -11,6 +11,13 @@
   <body>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/general.js"></script>
+    <label class="switch">
+     <input type="checkbox" id="chrono" onclick="renderTimeline()">
+     <div class="slider round">
+      <span class="backTime">Reverse</span>
+      <span class="foreTime">Chrono</span>
+     </div>
+    </label>
     <div id="body">
         <div id="container"></div>
         <div id="loadingMessage">Loading...</div>
