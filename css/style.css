@@ -8,7 +8,7 @@
 body {
   margin: 0px;
   font-weight: 300;
-  font-family: serif;
+  font-family: serif, 'Zapf Dingbats', sans-serif;
   color: #888;
 }
 
@@ -109,8 +109,8 @@ body {
   }
 
   .heading {
-    line-height: 40px;
-    font-size: 30px;
+    line-height: 45px;
+    font-size: 40px;
     font-weight: 500;
   }
 
