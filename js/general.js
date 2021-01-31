@@ -85,8 +85,8 @@ function makeLinks(data) {
       links += "<span> " + link[0] + " </span>";
     }else{
       links += "<span><a href=\"" + link[1] +
-        "\"  target=\"_blank\" rel=\"noopener noreferrer\" >" +
-        link[0] + "</a></span>";
+        "\"  target=\"_blank\" rel=\"noopener noreferrer\" > " +
+        link[0] + " </a></span>";
     }
   });
   if (data["media"]["url"].length == 0) {
