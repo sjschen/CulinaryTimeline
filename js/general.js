@@ -6,19 +6,19 @@ var colors = [getComputedStyle(document.documentElement).getPropertyValue('--col
     getComputedStyle(document.documentElement).getPropertyValue('--colour3')];
 
 // function to format date to Month Date, Year
-function formatDate(date, startDate, endDate) {
+function formatDate(startDate, endDate) {
   var monthNames = [
     "January", "February", "March",
     "April", "May", "June", "July",
     "August", "September", "October",
     "November", "December"
   ];
-  var outString = date.getFullYear();
-  if (date.getMonth()) {
-    outString += ' ' + monthNames[date.getMonth()];
+  var outString = startDate["year"];
+  if ("month" in startDate) {
+    outString += ' ' + monthNames[startDate["month"]];
     //Day only if there is a month
-    if (date.getDate()) {
-      outString += ' ' + date.getDate();
+    if ("day" in startDate) {
+      outString += ' ' + startDate["day"];
     }
   }else{ //year only date sometimes need mods to be more readable
     var startYear = parseInt(startDate["year"]);
@@ -70,7 +70,7 @@ function convertDates(data) {
     }
 
     data[i]["date"] = dateTime;
-    data[i]["sDate"] = formatDate(dateTime, startDate, data[i]["end_date"]);
+    data[i]["sDate"] = formatDate(startDate, data[i]["end_date"]);
   }
   return data;
 }
