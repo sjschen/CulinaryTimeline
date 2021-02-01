@@ -168,8 +168,8 @@ function loadedData(data, titleText, chrono) {
   container.append(titleElem);
 
   var headingElem = "<div class=\"level\">" +
-  "<div class=\"heading headLeft\" style=\" background: " + titleBgColor + ";" + "color: " + titleColor + "\"> \u2BC7 Ingredients </div>" +
-  "<div class=\"heading headRight\" style=\" background: " + titleBgColor +  ";" + "color: " + titleColor +  "\"> Recipes \u2BC8 </div>" + "</div>";
+  "<div class=\"heading headLeft\" style=\" background: " + titleBgColor + ";" + "color: " + titleColor + "\"> \u2190 Ingredients </div>" +
+  "<div class=\"heading headRight\" style=\" background: " + titleBgColor +  ";" + "color: " + titleColor +  "\"> Recipes \u2192 </div>" + "</div>";
   container.append(headingElem);
 
   container.append("<div class=\"level\"></div>");
