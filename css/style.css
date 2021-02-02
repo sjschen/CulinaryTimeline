@@ -1,20 +1,38 @@
-:root {
-    --colour0: #333;
-    --colour2: #ebc79e;
-    --colour1: #8E2323;
-    --colour3: #003366;
+@media (prefers-color-scheme: dark) {
+  :root {
+      --linkColour: #eee;
+      --themeBase: #8E2323;
+      --themeAccent: #003366;
+      --themeAnchor: #ebc79e;
+      --pageBackgroundColour: #001121;
+      --infoBackgroundColour: #260a0a;
+      --nonLinkColour: #fff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+      --linkColour: #333;
+      --themeBase: #ebc79e;
+      --themeAccent: #8E2323;
+      --themeAnchor: #003366;
+      --pageBackgroundColour: #FFFFF0;
+      --infoBackgroundColour: #f4f4f4;
+      --nonLinkColour: #555;
+  }
 }
 
 body {
   margin: 0px;
   font-weight: 300;
   font-family: sans-serif, 'Zapf Dingbats';
-  color: #888;
+  color: var(--nonLinkColour);
+  background-color: var(--pageBackgroundColour);
 }
 
 #timeline {
   width: 14px;
-  background: var(--colour3);
+  background: var(--themeAnchor);
   border-radius: 7px;
   height: 100%;
   padding: 20px 0px;
@@ -120,7 +138,7 @@ body {
   }
 
   .info {
-    background: #f4f4f4;
+    background: var(--infoBackgroundColour);
     padding: 10px;
     width: 80%;
   }
@@ -151,7 +169,7 @@ body {
     font-size: 32px;
     font-weight: 500;
     text-align: center;
-    color: var(--colour0);
+    color: var(--linkColour);
   }
 
   .leftDate {
@@ -186,7 +204,7 @@ body {
   }
 
   .info h3 span a {
-    color: var(--colour0);
+    color: var(--linkColour);
     text-decoration: none;
     font-weight: 500;
   }
@@ -232,7 +250,7 @@ body {
   }
 
   .info {
-    background: #f4f4f4;
+    background: var(--infoBackgroundColour);
     padding: 10px;
     width: 44%;
   }
@@ -249,14 +267,14 @@ body {
     left: 45.5%;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
-    border-left: 15px solid #f4f4f4;
+    border-left: 15px solid var(--infoBackgroundColour);
   }
 
   .info.rightInfo:after {
     right: 45.5%;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
-    border-right:15px solid #f4f4f4;
+    border-right:15px solid var(--infoBackgroundColour);
   }
 
   .infoDate {
@@ -267,7 +285,7 @@ body {
     white-space: nowrap;
     font-size: 16px;
     font-weight: 500;
-    color: var(--colour0);
+    color: var(--linkColour);
   }
 
   .infoDot {
@@ -331,7 +349,7 @@ body {
   }
 
   .info h3 span a {
-    color: var(--colour0);
+    color: var(--linkColour);
     text-decoration: underline dotted;
     font-weight: 500;
   }
@@ -421,19 +439,19 @@ h3 span a:hover{
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--colour2);
-  color: var(--colour1);
+  background-color: var(--themeBase);
+  color: var(--themeAccent);
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: var(--colour1);
-  color: var(--colour2);
+  background-color: var(--themeAccent);
+  color: var(--themeBase);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--colour1);
+  box-shadow: 0 0 1px var(--themeAccent);
 }
 
 .backTime, .foreTime

@@ -1,9 +1,7 @@
 // settings
 var DATA_FILE = "./projects.json";
-var colors = [getComputedStyle(document.documentElement).getPropertyValue('--colour0'),
-    getComputedStyle(document.documentElement).getPropertyValue('--colour1'),
-    getComputedStyle(document.documentElement).getPropertyValue('--colour2'),
-    getComputedStyle(document.documentElement).getPropertyValue('--colour3')];
+var YEAR_COLOUR_B = getComputedStyle(document.documentElement).getPropertyValue('--themeAccent');
+var YEAR_COLOUR_A = getComputedStyle(document.documentElement).getPropertyValue('--themeBase');
 
 // function to format date to Month Date, Year
 function formatDate(startDate, endDate) {
@@ -101,14 +99,14 @@ function makeElement( links, lastGroup, lastDisplayDate){
   if (lastGroup == "ingredient"){
     infoClass = "leftInfo" ;
     dateClass = "leftDate";
-    yearColor = colors[1];
-    yearBgColor = colors[2];
+    yearColor = YEAR_COLOUR_B;
+    yearBgColor = YEAR_COLOUR_A;
 
   }else{
     infoClass = "rightInfo" ;
     dateClass = "rightDate";
-    yearColor = colors[2];
-    yearBgColor = colors[1];
+    yearColor = YEAR_COLOUR_A;
+    yearBgColor = YEAR_COLOUR_B;
   }
 
   // time block generate view
@@ -131,11 +129,11 @@ function loadedData(data, titleText, chrono) {
   data = convertDates(data);
 
   if(chrono){
-    titleColor = colors[1];
-    titleBgColor = colors[2];
+    titleColor = YEAR_COLOUR_B;
+    titleBgColor = YEAR_COLOUR_A;
   }else{
-    titleColor = colors[2];
-    titleBgColor = colors[1];
+    titleColor = YEAR_COLOUR_A;
+    titleBgColor = YEAR_COLOUR_B;
   }
 
   for (var i=0; i<data.length; i++)
