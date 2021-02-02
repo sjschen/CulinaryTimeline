@@ -15,10 +15,10 @@ function formatDate(startDate, endDate) {
   ];
   var outString = startDate["year"];
   if ("month" in startDate) {
-    outString += ' ' + monthNames[startDate["month"]];
+    outString += ' ' + monthNames[parseInt(startDate["month"])-1];
     //Day only if there is a month
     if ("day" in startDate) {
-      outString += ' ' + startDate["day"];
+      outString += ' ' + startDate["day"].replace(/^(0)/,"");
     }
   }else{ //year only date sometimes need mods to be more readable
     var startYear = parseInt(startDate["year"]);
