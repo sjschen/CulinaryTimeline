@@ -1,11 +1,11 @@
 @media (prefers-color-scheme: dark) {
   :root {
       --linkColour: #eee;
-      --themeBase: #8E2323;
-      --themeAccent: #003366;
-      --themeAnchor: #ebc79e;
+      --themeBase: #ebc79e;
+      --themeAccent: #8E2323;
+      --themeAnchor: #003366;
       --pageBackgroundColour: #001121;
-      --infoBackgroundColour: #260a0a;
+      --infoBackgroundColour: #003366;
       --nonLinkColour: #fff;
   }
 }
@@ -16,8 +16,8 @@
       --themeBase: #ebc79e;
       --themeAccent: #8E2323;
       --themeAnchor: #003366;
-      --pageBackgroundColour: #FFFFF0;
-      --infoBackgroundColour: #f4f4f4;
+      --pageBackgroundColour: #ffffff;
+      --infoBackgroundColour: #f0f0f0;
       --nonLinkColour: #555;
   }
 }
