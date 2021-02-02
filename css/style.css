@@ -5,7 +5,7 @@
       --themeAccent: #8E2323;
       --themeAnchor: #003366;
       --pageBackgroundColour: #001121;
-      --infoBackgroundColour: #003366;
+      --infoBackgroundColour: #00264d;
       --nonLinkColour: #fff;
   }
 }
@@ -31,7 +31,6 @@ body {
 }
 
 #timeline {
-  width: 14px;
   background: var(--themeAnchor);
   border-radius: 7px;
   height: 100%;
@@ -120,6 +119,10 @@ body {
 }
 
 @media only screen and (orientation: portrait){
+  #timeline {
+    width: 25px;
+  }
+
   .title {
     width: 75%;
     line-height: 50px;
@@ -197,9 +200,10 @@ body {
 
   .info h3 {
     margin: 0px;
-    padding: 0px;
+    padding: 8px;
     font-size: 40px;
     font-weight: 300;
+    line-height: 25px
     position: relative;
   }
 
@@ -233,6 +237,10 @@ body {
 }
 
 @media only screen and (orientation: landscape) {
+  #timeline {
+    width: 15px;
+  }
+
   .title {
     line-height: 35px;
     font-size: 28px;
